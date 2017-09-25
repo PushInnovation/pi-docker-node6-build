@@ -1,0 +1,6 @@
+Make sure to change the tag to the new version
+
+docker login
+docker build --rm=true -t adexchangegrp/node6-build
+docker tag $ID adexchangegrp/node6-build:latest
+docker push adexchangegrp/node6-build
