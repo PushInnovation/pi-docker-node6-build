@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/src
+    machine: true
+    environment:
+      DOCKER_IMAGE: "176893484409.dkr.ecr.us-west-2.amazonaws.com/$CIRCLE_PROJECT_REPONAME:latest"
+    steps:
+      - checkout
+      - run:
+          name: test
+          command: echo "no tests"
+      - run:
+          name: build
+          command: |
+            eval "docker build -t $DOCKER_IMAGE ."
+
+      - deploy:
+          name: deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              aws configure set region us-west-2
+              $(aws ecr get-login --no-include-email)
+              eval "docker push $DOCKER_IMAGE"
+            fi
