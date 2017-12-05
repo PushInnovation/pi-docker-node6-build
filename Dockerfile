@@ -11,6 +11,12 @@ RUN VER="17.03.0-ce" \
     && mv /tmp/docker/* /usr/bin \
     && rm /tmp/docker-$VER.tgz
 
+#dockerize
+ENV DOCKERIZE_VERSION v0.5.0
+RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+
 #aws
 RUN pip install --upgrade awscli
 
