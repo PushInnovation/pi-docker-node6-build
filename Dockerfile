@@ -27,7 +27,7 @@ RUN rm -rf /usr/local/lib/node_modules/npm \
   && npm --version
 
 #yarn
-ENV YARN_VERSION 1.0.1
+ENV YARN_VERSION 1.6.0
 RUN set -ex \
   && for key in \
     6A010C5166006599AA17F08146C2130DFD2497F5 \
